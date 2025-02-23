@@ -1,20 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://c70mxilhhc0wb"]
+[gd_scene load_steps=5 format=3 uid="uid://c70mxilhhc0wb"]
+
+[ext_resource type="Script" path="res://levels/base_level.gd" id="1_qugn1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nyvyh"]
 size = Vector2(705, 33)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_so7ej"]
-size = Vector2(1147, 24.5)
+size = Vector2(1152, 24.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l25iy"]
 size = Vector2(705, 33)
 
 [node name="BaseLevel" type="Node2D"]
+script = ExtResource("1_qugn1")
 
 [node name="Wall" type="ColorRect" parent="."]
-offset_left = 27.0
-offset_top = -36.0
-offset_right = 735.0
+offset_left = 30.0
+offset_top = -39.0
+offset_right = 741.0
 offset_bottom = -13.0
 rotation = 1.5708
 
