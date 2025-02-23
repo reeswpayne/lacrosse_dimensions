@@ -25,9 +25,9 @@ func create_goal(playernum):
 		
 func update_points():
 	if player == 1:
-		get_node("/root/globas").p1_score = get_node("/root/globas").p1_score + 1
-		print(get_node("/root/globas").p1_score)
+		Globals.p1_score = Globals.p1_score + 1
+		print(Globals.p1_score)
 	else:
-		get_node("/root/globas").p2_score = get_node("/root/globas").p2_score + 1
-		print(get_node("/root/globas").p2_score)
+		Globals.p2_score = Globals.p2_score + 1
+		print(Globals.p2_score)
 	

@@ -12,6 +12,7 @@ var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	contact_monitor = true
+	max_contacts_reported = 1
 	apply_impulse(Vector2(200,0))
 	pass # Replace with function body.
 
@@ -35,16 +36,10 @@ func move_body(targetPos: Vector2):
 	reset_state = true
 
 func _on_body_entered(body):
-	print("yes")
 	if body.is_in_group("goals"):
 		body.update_points()
 		move_body(Vector2(-500,-500))
 		await get_tree().create_timer(2.0).timeout
 		var rand_respawn = rng.randi_range(0,3)
 		move_body(respawn[rand_respawn])
-	pass # Replace with function body.
-
-
-func _on_body_exited(body):
-	print("exit")
 	pass # Replace with function body.
