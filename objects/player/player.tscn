@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bt17v531utlg6"]
+[gd_scene load_steps=5 format=3 uid="uid://bt17v531utlg6"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_ot148"]
 [ext_resource type="Texture2D" uid="uid://dnqlx0hwnigum" path="res://test_graphics/test_player.png" id="2_rx038"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xj4ym"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8ps1"]
+size = Vector2(87, 176)
 
 [node name="Player" type="RigidBody2D"]
-position = Vector2(100, 100)
+physics_material_override = SubResource("PhysicsMaterial_xj4ym")
 gravity_scale = 0.0
 script = ExtResource("1_ot148")
 
