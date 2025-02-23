@@ -11,7 +11,7 @@ load_path = "res://.godot/imported/circle-outline-png-6.png-a676c93d82ce66945584
 [sub_resource type="CircleShape2D" id="CircleShape2D_xve0s"]
 radius = 22.0
 
-[node name="Ball" type="RigidBody2D"]
+[node name="Ball" type="RigidBody2D" groups=["ball"]]
 physics_material_override = SubResource("PhysicsMaterial_bpe2w")
 gravity_scale = 0.0
 linear_damp_mode = 1
@@ -26,3 +26,6 @@ texture = SubResource("CompressedTexture2D_cd2xg")
 position = Vector2(-5.42101e-20, 0)
 scale = Vector2(1, 1)
 shape = SubResource("CircleShape2D_xve0s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
