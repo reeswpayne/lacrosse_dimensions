@@ -13,11 +13,6 @@ func _ready():
 func _process(delta):
 	pass
 
-func _on_base_level_create_goal(playernum):
-	if player != 0 :
-		player = playernum
-		print(playernum)
-		
 func create_goal(playernum):
 	if player == 0 :
 		player = playernum

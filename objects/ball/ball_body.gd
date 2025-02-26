@@ -42,4 +42,9 @@ func _on_body_entered(body):
 		await get_tree().create_timer(2.0).timeout
 		var rand_respawn = rng.randi_range(0,3)
 		move_body(respawn[rand_respawn])
+	if body.is_in_group("portals"):
+		move_body(body.get_parent().output_point)
+		$CollisionShape2D.set_deferred("disabled", true)
+		await get_tree().create_timer(0.5).timeout
+		$CollisionShape2D.set_deferred("disabled", false)
 	pass # Replace with function body.
