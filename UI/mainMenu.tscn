@@ -206,3 +206,42 @@ offset_top = 648.0
 offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Menu4/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "How to play"
+
+[node name="HSeparator" type="HSeparator" parent="Control/Menu4/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Menu4/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu4/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Menu4/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Use (keys) to move around!
+(keys) to rotate
+(key) to move forward"
+
+[node name="Label2" type="Label" parent="Control/Menu4/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Your goal is to score more points than your opponent in 3 minutes."
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/Menu4/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Control/Menu4/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Control/Menu4/VBoxContainer/HBoxContainer"]
+layout_mode = 2
