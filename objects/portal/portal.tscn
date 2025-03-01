@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4fckfx70gogm"]
+
+[ext_resource type="Script" path="res://objects/portal/portal.gd" id="1_87a80"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k8mxy"]
+radius = 29.8944
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_37pu4"]
+load_path = "res://.godot/imported/circle-outline-png-6.png-a676c93d82ce669455842a9cb897d323.ctex"
+
+[node name="Portal" type="CanvasLayer" groups=["portals"]]
+script = ExtResource("1_87a80")
+
+[node name="PortalBody" type="StaticBody2D" parent="." groups=["portals"]]
+
+[node name="PortalCollider" type="CollisionShape2D" parent="PortalBody"]
+scale = Vector2(0.903851, 0.868898)
+shape = SubResource("CircleShape2D_k8mxy")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="PortalBody"]
+z_index = -1
+scale = Vector2(0.3, 0.3)
+
+[node name="PortalSprite" type="Sprite2D" parent="PortalBody/CanvasModulate"]
+scale = Vector2(0.3, 0.3)
+texture = SubResource("CompressedTexture2D_37pu4")
