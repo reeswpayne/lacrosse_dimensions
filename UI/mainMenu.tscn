@@ -1,247 +1,285 @@
-[gd_scene load_steps=3 format=3 uid="uid://bv2lm0rosp1yl"]
+[gd_scene load_steps=2 format=3 uid="uid://bnnscw43utich"]
 
-[ext_resource type="Script" path="res://control.gd" id="1_xcjii"]
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_y156j"]
 
-[sub_resource type="GDScript" id="GDScript_6dde3"]
-script/source = "extends MarginContainer
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
-[node name="CanvasLayer" type="CanvasLayer"]
-
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xcjii")
+script = ExtResource("1_y156j")
 
-[node name="Menu1" type="MarginContainer" parent="Control"]
+[node name="Menu1" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_right = 1.667
+anchor_bottom = 1.667
+offset_right = -1280.64
+offset_bottom = -720.36
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="Control/Menu1"]
+[node name="CenterContainer" type="CenterContainer" parent="Menu1"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu1/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu1/CenterContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/Menu1/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Menu1/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 100
 text = "Lacrosse Dimensions"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="Control/Menu1/CenterContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Menu1/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu1/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Menu1/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu1/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StartButton" type="Button" parent="Menu1/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
 text = "Start"
 
-[node name="HTPButton" type="Button" parent="Control/Menu1/CenterContainer/VBoxContainer"]
+[node name="HTPButton" type="Button" parent="Menu1/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
 text = "How to Play"
 
-[node name="CreditsButton" type="Button" parent="Control/Menu1/CenterContainer/VBoxContainer"]
+[node name="CreditsButton" type="Button" parent="Menu1/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
 text = "Credits"
 
-[node name="Menu2" type="MarginContainer" parent="Control"]
+[node name="Quit" type="Button" parent="Menu1/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="VSeparator2" type="VSeparator" parent="Menu1/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Menu2" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1152.0
-offset_right = 1152.0
+offset_left = 1920.0
+offset_right = 1920.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu2"]
 layout_mode = 2
+theme_override_constants/separation = 100
 
-[node name="HSeparator" type="HSeparator" parent="Control/Menu2/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="Label" type="Label" parent="Menu2/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Choose Your Map"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Menu2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="Map1" type="Button" parent="Control/Menu2/VBoxContainer/HBoxContainer"]
+[node name="M1" type="Button" parent="Menu2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 600)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Map 1"
 
-[node name="VSeparator" type="VSeparator" parent="Control/Menu2/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="Map2" type="Button" parent="Control/Menu2/VBoxContainer/HBoxContainer"]
+[node name="M2" type="Button" parent="Menu2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 600)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Map 2"
 
-[node name="VSeparator2" type="VSeparator" parent="Control/Menu2/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="Map3" type="Button" parent="Control/Menu2/VBoxContainer/HBoxContainer"]
+[node name="M3" type="Button" parent="Menu2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 600)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Map 3
 "
 
-[node name="HSeparator2" type="HSeparator" parent="Control/Menu2/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="HBoxContainer2" type="HBoxContainer" parent="Menu2/VBoxContainer"]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="Control/Menu2/VBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Menu2/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="M2Back" type="Button" parent="Menu2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Back"
+theme_override_font_sizes/font_size = 40
+text = "Back to Title"
 
-[node name="HSeparator3" type="HSeparator" parent="Control/Menu2/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="VSeparator2" type="VSeparator" parent="Menu2/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Menu3" type="MarginContainer" parent="Control"]
+[node name="Menu3" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1152.0
-offset_right = -1152.0
+offset_left = -1920.0
+offset_right = -1920.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_6dde3")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Menu3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu3"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Credits" type="Label" parent="Menu3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Credits"
+
+[node name="HSeparator3" type="HSeparator" parent="Menu3/VBoxContainer"]
 layout_mode = 2
 
-[node name="VSeparator" type="VSeparator" parent="Control/Menu3/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+[node name="Label" type="Label" parent="Menu3/VBoxContainer"]
 layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu3/HBoxContainer"]
-layout_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="Control/Menu3/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Credits" type="Label" parent="Control/Menu3/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Credits:"
-
-[node name="HSeparator3" type="HSeparator" parent="Control/Menu3/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/Menu3/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Camden"
 
-[node name="Label2" type="Label" parent="Control/Menu3/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Menu3/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Gloria"
 
-[node name="Label3" type="Label" parent="Control/Menu3/HBoxContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="Menu3/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Lainey"
 
-[node name="Label4" type="Label" parent="Control/Menu3/HBoxContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="Menu3/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Gwen"
 
-[node name="Label5" type="Label" parent="Control/Menu3/HBoxContainer/VBoxContainer"]
+[node name="Label5" type="Label" parent="Menu3/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Rees"
 
-[node name="Label6" type="Label" parent="Control/Menu3/HBoxContainer/VBoxContainer"]
+[node name="Label6" type="Label" parent="Menu3/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Cole"
 
-[node name="HSeparator2" type="HSeparator" parent="Control/Menu3/HBoxContainer/VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="Menu3/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="Control/Menu3/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu3/VBoxContainer"]
 layout_mode = 2
-text = "Back to title"
 
-[node name="HSeparator4" type="HSeparator" parent="Control/Menu3/HBoxContainer/VBoxContainer"]
+[node name="M3Back" type="Button" parent="Menu3/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Back to Title"
 
-[node name="Menu4" type="MarginContainer" parent="Control"]
+[node name="Menu4" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 648.0
-offset_bottom = 648.0
+offset_top = 1080.0
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu4"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu4"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Menu4/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "How to Play"
+
+[node name="HSeparator" type="HSeparator" parent="Menu4/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/Menu4/VBoxContainer"]
+[node name="Label2" type="Label" parent="Menu4/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Play against an opponent! Your goal is to score more points than your opponent  in 3 minutes.
+If the score is tied when the timer strike 0, the game moves to sudden death.
+In sudden death, the first player to score wins!
+
+Each team has 2 athletes, a goalie and a shooter. You can switch between controlling either at any time.
+The goalie is locked locked to the are around the goal, and cannot move freely around the arena.
+The shooter can move anywhere in the arena and can steal the ball from the opponent.
+
+Arenas can have portals, use them to make interesting plays."
+
+[node name="Label3" type="Label" parent="Menu4/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "How to play"
+text = "Controls"
 
-[node name="HSeparator" type="HSeparator" parent="Control/Menu4/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="Label4" type="Label" parent="Menu4/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Use WASD (P1) or IJKL (P2) to move. Move forward and backward with WS (P1) or IK (P2) and rotate with AD (P1) or JL (P2).
+Shoot or steal the ball with V (P1) or / (P2). The ball shoots in the direction you are facing.
+Switch between offense and defense with C (P1) or . (P2)
+"
+
+[node name="HSeparator2" type="HSeparator" parent="Menu4/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Menu4/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu4/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu4/VBoxContainer/HBoxContainer"]
+[node name="M4Back" type="Button" parent="Menu4/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Back to Title"
 
-[node name="Label" type="Label" parent="Control/Menu4/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Use (keys) to move around!
-(keys) to rotate
-(key) to move forward"
-
-[node name="Label2" type="Label" parent="Control/Menu4/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Your goal is to score more points than your opponent in 3 minutes."
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/Menu4/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Control/Menu4/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer4" type="VBoxContainer" parent="Control/Menu4/VBoxContainer/HBoxContainer"]
-layout_mode = 2
+[connection signal="pressed" from="Menu1/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Menu1/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HTPButton" to="." method="_on_htp_button_pressed"]
+[connection signal="pressed" from="Menu1/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Menu1/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
