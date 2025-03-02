@@ -75,3 +75,13 @@ func _on_m_4_back_pressed() -> void:
 func _on_m_1_pressed() -> void:
 	AudioManager.play_sfx(click_sfx, 0.5)
 	get_tree().change_scene_to_file("res://levels/level_1.tscn")
+
+
+func _on_m_2_pressed() -> void:
+	AudioManager.play_sfx(click_sfx, 0.5)
+	get_tree().change_scene_to_file("res://levels/level_2.tscn")
+
+
+func _on_m_3_pressed() -> void:
+	AudioManager.play_sfx(click_sfx, 0.5)
+	get_tree().change_scene_to_file("res://levels/level_3.tscn")

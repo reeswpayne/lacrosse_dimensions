@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnnscw43utich"]
+[gd_scene load_steps=11 format=3 uid="uid://bnnscw43utich"]
 
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_y156j"]
 [ext_resource type="Script" path="res://Background/background.gd" id="2_32x0d"]
@@ -6,6 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://odk5x52xsdax" path="res://Background/Sky.PNG" id="3_lnhsd"]
 [ext_resource type="Texture2D" uid="uid://d1tkq0p8vvc3h" path="res://Background/Stars.PNG" id="4_oda8w"]
 [ext_resource type="Texture2D" uid="uid://1vo1rlpejuu5" path="res://Background/Planets.PNG" id="5_pj04o"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d03i3"]
+load_path = "res://.godot/imported/title_mainmenu.png-a944a24ebe76664d89fd1178e40f436c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jq401"]
+load_path = "res://.godot/imported/lv1_preview.png-d26f4a0378284ec3c643583e43275c64.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g3o4i"]
+load_path = "res://.godot/imported/lv2_preview.png-9cce4584d996dd44ae5e1c603c8722d1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ov6no"]
+load_path = "res://.godot/imported/lv3_preview.png-7f6b0e06c55f4dfbf8a1842957cd487b.ctex"
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_y156j")
@@ -54,12 +66,6 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="StartScreen/CenterContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
-
-[node name="Label" type="Label" parent="StartScreen/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = "Lacrosse Dimensions"
-horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="StartScreen/CenterContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -110,6 +116,11 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Sprite2D" type="Sprite2D" parent="StartScreen/CenterContainer/VBoxContainer"]
+position = Vector2(208, 81)
+scale = Vector2(0.641146, 0.661111)
+texture = SubResource("CompressedTexture2D_d03i3")
+
 [node name="LevelSelect" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,6 +149,23 @@ text = "Choose Your Map"
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_override_constants/separation = 20
+
+[node name="Level_Previews" type="Node2D" parent="LevelSelect/VBoxContainer/HBoxContainer"]
+
+[node name="Lv1_Preview" type="Sprite2D" parent="LevelSelect/VBoxContainer/HBoxContainer/Level_Previews"]
+position = Vector2(296, 299.5)
+scale = Vector2(0.313099, 0.565589)
+texture = SubResource("CompressedTexture2D_jq401")
+
+[node name="Lv2_Preview" type="Sprite2D" parent="LevelSelect/VBoxContainer/HBoxContainer/Level_Previews"]
+position = Vector2(909.5, 301)
+scale = Vector2(0.314696, 0.566825)
+texture = SubResource("CompressedTexture2D_g3o4i")
+
+[node name="Lv3_Preview" type="Sprite2D" parent="LevelSelect/VBoxContainer/HBoxContainer/Level_Previews"]
+position = Vector2(1523, 300)
+scale = Vector2(0.316294, 0.565465)
+texture = SubResource("CompressedTexture2D_ov6no")
 
 [node name="M1" type="Button" parent="LevelSelect/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 600)
@@ -325,6 +353,8 @@ anchor_mode = 0
 [connection signal="pressed" from="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="LevelSelect/VBoxContainer/HBoxContainer/M1" to="." method="_on_m_1_pressed"]
+[connection signal="pressed" from="LevelSelect/VBoxContainer/HBoxContainer/M2" to="." method="_on_m_2_pressed"]
+[connection signal="pressed" from="LevelSelect/VBoxContainer/HBoxContainer/M3" to="." method="_on_m_3_pressed"]
 [connection signal="pressed" from="LevelSelect/VBoxContainer/HBoxContainer2/M2Back" to="." method="_on_m_2_back_pressed"]
 [connection signal="pressed" from="Credits/VBoxContainer/HBoxContainer/M3Back" to="." method="_on_m_3_back_pressed"]
 [connection signal="pressed" from="HowToPlay/VBoxContainer/HBoxContainer/M4Back" to="." method="_on_m_4_back_pressed"]
