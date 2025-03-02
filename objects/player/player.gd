@@ -174,19 +174,38 @@ func _on_animated_sprite_2d_frame_changed():
 			$AnimatedSprite2D.pause() 
 		
 		elif $AnimatedSprite2D.frame == 6:
-			has_ball = false
-			var ball_instance = ball_scene.instantiate()
-			var ball_rb = ball_instance.get_node("RigidBody2D")
-			ball_rb.transform = Transform2D(transform)
-			ball_rb.transform *= $ShootSpawn.transform
-			var facing_direction = ball_rb.transform.y.normalized()
-			ball_rb.linear_velocity = facing_direction * (base_throw_magnitude + charge_coef * charge_time)
-			ball_rb.linear_velocity += linear_velocity.project(ball_rb.linear_velocity)
-			
-			get_parent().add_child(ball_instance)
+			var space_state = get_world_2d().direct_space_state  # Get physics space
+			# Create a small collision shape for checking (like a tiny circle)
+			var shape = CircleShape2D.new()
+			shape.radius = 8  # Adjust this to match the ball size
+
+			# Set up query parameters
+			var query_params = PhysicsShapeQueryParameters2D.new()
+			query_params.shape = shape
+			query_params.transform = $ShootSpawn.transform
+			query_params.collision_mask = 1  # Only check against walls (layer 1)
+
+			# Check for collisions
+			var result = space_state.intersect_shape(query_params)
+
+			if result.size() == 0:  # No walls detected at the spawn position
+				has_ball = false
+				var ball_instance = ball_scene.instantiate()
+				var ball_rb = ball_instance.get_node("RigidBody2D")
+				ball_rb.transform = Transform2D(transform)
+				ball_rb.transform *= $ShootSpawn.transform
+				var facing_direction = ball_rb.transform.y.normalized()
+				ball_rb.linear_velocity = facing_direction * (base_throw_magnitude + charge_coef * charge_time)
+				ball_rb.linear_velocity += linear_velocity.project(ball_rb.linear_velocity)
+				
+				get_parent().add_child(ball_instance)
 			
 		elif $AnimatedSprite2D.frame == 8:
-			$AnimatedSprite2D.play("idle")
+			if has_ball:
+				$AnimatedSprite2D.play("ball")
+			else:
+				$AnimatedSprite2D.play("idle")
+				
 			$AnimatedSprite2D.speed_scale = 1.0
 			charge_time = 0.0
 	
