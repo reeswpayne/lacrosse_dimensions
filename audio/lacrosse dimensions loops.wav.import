@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://doppenc2lwsen"
+path="res://.godot/imported/lacrosse dimensions loops.wav-bbf3c3b5e02ae7ba0539654eabff3624.sample"
+
+[deps]
+
+source_file="res://audio/lacrosse dimensions loops.wav"
+dest_files=["res://.godot/imported/lacrosse dimensions loops.wav-bbf3c3b5e02ae7ba0539654eabff3624.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=767314
+edit/loop_end=-1
+compress/mode=0
