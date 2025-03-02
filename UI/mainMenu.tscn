@@ -1,0 +1,327 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnnscw43utich"]
+
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_y156j"]
+[ext_resource type="Script" path="res://Background/background.gd" id="2_32x0d"]
+[ext_resource type="Texture2D" uid="uid://odk5x52xsdax" path="res://Background/Sky.PNG" id="3_lnhsd"]
+[ext_resource type="Texture2D" uid="uid://d1tkq0p8vvc3h" path="res://Background/Stars.PNG" id="4_oda8w"]
+[ext_resource type="Texture2D" uid="uid://1vo1rlpejuu5" path="res://Background/Planets.PNG" id="5_pj04o"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_y156j")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+script = ExtResource("2_32x0d")
+
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0)
+motion_mirroring = Vector2(5760, 0)
+
+[node name="Sky" type="Sprite2D" parent="ParallaxBackground/Sky"]
+texture = ExtResource("3_lnhsd")
+
+[node name="Stars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.75, 0)
+motion_mirroring = Vector2(5760, 0)
+
+[node name="Stars" type="Sprite2D" parent="ParallaxBackground/Stars"]
+texture = ExtResource("4_oda8w")
+
+[node name="Planet" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1, 0)
+motion_mirroring = Vector2(5760, 0)
+
+[node name="Planet" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("5_pj04o")
+
+[node name="StartScreen" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4201.0
+offset_top = -1042.0
+offset_right = -2281.0
+offset_bottom = 38.0
+
+[node name="CenterContainer" type="CenterContainer" parent="StartScreen"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartScreen/CenterContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StartScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Lacrosse Dimensions"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="StartScreen/CenterContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StartScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="StartScreen/CenterContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartScreen/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StartButton" type="Button" parent="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Start"
+
+[node name="HTPButton" type="Button" parent="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "How to Play"
+
+[node name="CreditsButton" type="Button" parent="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Credits"
+
+[node name="Quit" type="Button" parent="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="VSeparator2" type="VSeparator" parent="StartScreen/CenterContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LevelSelect" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1026.0
+offset_top = -996.0
+offset_right = 2946.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelect"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Label" type="Label" parent="LevelSelect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Choose Your Map"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelSelect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="M1" type="Button" parent="LevelSelect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Map 1"
+
+[node name="M2" type="Button" parent="LevelSelect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Map 2"
+
+[node name="M3" type="Button" parent="LevelSelect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Map 3
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="LevelSelect/VBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="LevelSelect/VBoxContainer/HBoxContainer2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="M2Back" type="Button" parent="LevelSelect/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Back to Title"
+
+[node name="VSeparator2" type="VSeparator" parent="LevelSelect/VBoxContainer/HBoxContainer2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Credits" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6114.0
+offset_top = -65.0
+offset_right = -4194.0
+offset_bottom = 1015.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Credits" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Credits"
+
+[node name="HSeparator3" type="HSeparator" parent="Credits/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Camden"
+
+[node name="Label2" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Gloria"
+
+[node name="Label3" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Lainey"
+
+[node name="Label4" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Gwen"
+
+[node name="Label5" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Rees"
+
+[node name="Label6" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Cole"
+
+[node name="HSeparator4" type="HSeparator" parent="Credits/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Credits/VBoxContainer"]
+layout_mode = 2
+
+[node name="M3Back" type="Button" parent="Credits/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Back to Title"
+
+[node name="HowToPlay" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1630.0
+offset_top = -58.0
+offset_right = 290.0
+offset_bottom = 1022.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HowToPlay"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="HowToPlay/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "How to Play"
+
+[node name="HSeparator" type="HSeparator" parent="HowToPlay/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HowToPlay/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Play against an opponent! Your goal is to score more points than your opponent  in 3 minutes.
+If the score is tied when the timer strike 0, the game moves to sudden death.
+In sudden death, the first player to score wins!
+
+Each team has 2 athletes, a goalie and a shooter. You can switch between controlling either at any time.
+The goalie is locked locked to the are around the goal, and cannot move freely around the arena.
+The shooter can move anywhere in the arena and can steal the ball from the opponent.
+
+Arenas can have portals, use them to make interesting plays."
+
+[node name="Label3" type="Label" parent="HowToPlay/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Controls"
+
+[node name="Label4" type="Label" parent="HowToPlay/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Use WASD (P1) or IJKL (P2) to move. Move forward and backward with WS (P1) or IK (P2) and rotate with AD (P1) or JL (P2).
+Shoot or steal the ball with V (P1) or / (P2). The ball shoots in the direction you are facing.
+Switch between offense and defense with C (P1) or . (P2)
+"
+
+[node name="HSeparator2" type="HSeparator" parent="HowToPlay/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HowToPlay/VBoxContainer"]
+layout_mode = 2
+
+[node name="M4Back" type="Button" parent="HowToPlay/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Back to Title"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-4158, -996)
+anchor_mode = 0
+
+[connection signal="pressed" from="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HTPButton" to="." method="_on_htp_button_pressed"]
+[connection signal="pressed" from="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="LevelSelect/VBoxContainer/HBoxContainer2/M2Back" to="." method="_on_m_2_back_pressed"]
+[connection signal="pressed" from="Credits/VBoxContainer/HBoxContainer/M3Back" to="." method="_on_m_3_back_pressed"]
+[connection signal="pressed" from="HowToPlay/VBoxContainer/HBoxContainer/M4Back" to="." method="_on_m_4_back_pressed"]

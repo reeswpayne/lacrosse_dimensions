@@ -15,9 +15,17 @@ run/main_scene="res://levels/base_level.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="viewport"
+
 [autoload]
 
 Globals="*res://globals/globals.gd"
+
 
 [editor]
 

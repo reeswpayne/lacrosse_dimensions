@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvmja68j7spsx"]
+
+[ext_resource type="Texture2D" uid="uid://odk5x52xsdax" path="res://Background/Sky.PNG" id="1_2gpyp"]
+[ext_resource type="Script" path="res://Background/background.gd" id="1_uehua"]
+[ext_resource type="Texture2D" uid="uid://d1tkq0p8vvc3h" path="res://Background/Stars.PNG" id="2_deqv3"]
+[ext_resource type="Texture2D" uid="uid://1vo1rlpejuu5" path="res://Background/Planets.PNG" id="3_q7mso"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+offset = Vector2(0, 540)
+transform = Transform2D(1, 0, 0, 1, 0, 540)
+scroll_offset = Vector2(10, 0)
+script = ExtResource("1_uehua")
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(5760, 0)
+
+[node name="Sky" type="Sprite2D" parent="Sky"]
+texture = ExtResource("1_2gpyp")
+
+[node name="Stars" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(5760, 0)
+
+[node name="Stars" type="Sprite2D" parent="Stars"]
+texture = ExtResource("2_deqv3")
+
+[node name="Planet" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(5760, 0)
+
+[node name="Planet" type="Sprite2D" parent="Planet"]
+texture = ExtResource("3_q7mso")
