@@ -124,10 +124,10 @@ func _on_animated_sprite_2d_frame_changed():
 	
 	elif $AnimatedSprite2D.animation == "steal":
 		if $AnimatedSprite2D.frame == 4:
-			$Area2D.get_node("CollisionPolygon2D").set_deffered("disabled", false)
+			$Area2D.get_node("CollisionPolygon2D").set_deferred("disabled", false)
 		
 		elif $AnimatedSprite2D.frame == 8:
-			$Area2D.get_node("CollisionPolygon2D").set_deffered("disabled", true)
+			$Area2D.get_node("CollisionPolygon2D").set_deferred("disabled", true)
 			if not has_ball:
 				$AnimatedSprite2D.play("idle")
 				
