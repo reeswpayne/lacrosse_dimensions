@@ -64,11 +64,3 @@ polygon = PackedVector2Array(1478, 1048, 1505, 1021, 1732, 1023, 1710, 1048)
 
 [node name="Gauge" type="Sprite2D" parent="TeamBG"]
 texture = ExtResource("7_r1lrs")
-
-[node name="swap" type="Button" parent="."]
-layout_mode = 0
-offset_left = 500.0
-offset_top = 500.0
-offset_right = 600.0
-offset_bottom = 600.0
-text = "Offense"
