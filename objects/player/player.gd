@@ -22,6 +22,10 @@ var base_throw_magnitude: float = 200
 
 var is_goalie: bool = false
 var x_lock: float = 0.0
+var dash_time: float = 4.0
+
+func do_dash():
+	pass
 
 func _integrate_forces(state: PhysicsDirectBodyState2D):
 	sleeping = false
@@ -53,11 +57,22 @@ func _integrate_forces(state: PhysicsDirectBodyState2D):
 
 		# Apply movement
 		if move_direction != 0:
-			var forward_vector = Vector2.UP.rotated(rotation)
-			var move_force = forward_vector * thrust * move_direction
-			if is_goalie:
-				move_force.x = 0
-			apply_central_force(move_force)
+			if player_type == PlayerType.PLAYER_1 and \
+			Input.is_action_just_pressed("p1_dash") and Globals.p1_dash_time == 0.0:
+				Globals.p1_dash_time = dash_time
+				do_dash()
+			elif player_type == PlayerType.PLAYER_2 and \
+			Input.is_action_just_pressed("p2_dash") and Globals.p2_dash_time == 0.0:
+				Globals.p2_dash_time = dash_time
+				do_dash()
+			else:
+				var forward_vector = Vector2.UP.rotated(rotation)
+				var move_force = forward_vector * thrust * move_direction
+				if is_goalie:
+					move_force.x = 0
+				apply_central_force(move_force)
+			
+		
 	
 	if is_goalie:
 		var new_velocity = state.linear_velocity
@@ -96,6 +111,7 @@ func _process(delta: float) -> void:
 			is_charging = false
 			$AnimatedSprite2D.speed_scale += 2 * charge_time / max_charge
 			$AnimatedSprite2D.play()
+			Globals.p1_charge_percent = 0.0
 		is_in_control = not is_in_control
 		
 	elif player_type == PlayerType.PLAYER_2 and Input.is_action_just_pressed("p2_swap"):
@@ -103,6 +119,7 @@ func _process(delta: float) -> void:
 			is_charging = false
 			$AnimatedSprite2D.speed_scale += 2 * charge_time / max_charge
 			$AnimatedSprite2D.play()
+			Globals.p2_charge_percent = 0.0 
 		is_in_control = not is_in_control
 	
 	if $AnimatedSprite2D.animation == "throw" and \
@@ -111,11 +128,19 @@ func _process(delta: float) -> void:
 			is_charging = false
 			$AnimatedSprite2D.speed_scale += 2 * charge_time / max_charge
 			$AnimatedSprite2D.play()
+			if player_type == PlayerType.PLAYER_1:
+				Globals.p1_charge_percent = 0.0
+			else:
+				Globals.p2_charge_percent = 0.0
 			
 	elif is_charging:
 		charge_time += delta
 		if charge_time > max_charge:
 			charge_time = max_charge
+		if player_type == PlayerType.PLAYER_1:
+			Globals.p1_charge_percent = charge_time / max_charge
+		else:
+			Globals.p2_charge_percent = charge_time / max_charge
 	
 	if is_in_control:
 		if has_ball and $AnimatedSprite2D.animation == "ball":
@@ -191,7 +216,12 @@ func _on_area_2d_body_entered(body):
 		
 		var anim = body.get_node("AnimatedSprite2D")
 		if anim.animation == "throw":
-			body.is_charging = false
+			if body.is_charge:
+				body.is_charging = false
+				if body.player_type == PlayerType.PLAYER_1:
+					Globals.p1_charge_percent = 0.0
+				else:
+					Globals.p2_charge_percent = 0.0
 			
 			var current_frame = anim.frame
 			anim.play("empty_throw")
