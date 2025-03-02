@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const respawn = [Vector2(300,400),Vector2(300,100),Vector2(500,400),Vector2(500,100)]
+@export var respawn = [Vector2(960,370),Vector2(960,770)]
 
 var reset_state = false
 var moveVector: Vector2
@@ -42,8 +42,10 @@ func _on_body_entered(body):
 		body.update_points()
 		move_body(Vector2(-500,-500))
 		await get_tree().create_timer(2.0).timeout
-		var rand_respawn = rng.randi_range(0,3)
+		var rand_respawn = rng.randi_range(0,respawn.size()-1)
 		move_body(respawn[rand_respawn])
+		linear_velocity = Vector2.ZERO
+		angular_velocity = 0.0
 	if body.is_in_group("portals"):
 		move_body(body.get_parent().output_point)
 		$CollisionShape2D.set_deferred("disabled", true)

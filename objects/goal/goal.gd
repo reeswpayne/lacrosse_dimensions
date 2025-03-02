@@ -19,7 +19,7 @@ func create_goal(playernum):
 		#print(playernum)
 		
 func update_points():
-	if player == 1:
+	if player == 2:
 		Globals.p1_score = Globals.p1_score + 1
 		print(Globals.p1_score)
 	else:

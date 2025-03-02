@@ -1,26 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4fckfx70gogm"]
+[gd_scene load_steps=8 format=3 uid="uid://d4fckfx70gogm"]
 
 [ext_resource type="Script" path="res://objects/portal/portal.gd" id="1_87a80"]
+[ext_resource type="Texture2D" uid="uid://btnaxobhxiqwt" path="res://graphics/objects/Portal sprite sheet.PNG" id="2_4ymsx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k8mxy"]
-radius = 29.8944
+radius = 20.366
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_37pu4"]
-load_path = "res://.godot/imported/circle-outline-png-6.png-a676c93d82ce669455842a9cb897d323.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7qbr"]
+atlas = ExtResource("2_4ymsx")
+region = Rect2(0, 0, 500, 500)
 
-[node name="Portal" type="CanvasLayer" groups=["portals"]]
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0niy"]
+atlas = ExtResource("2_4ymsx")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34cxj"]
+atlas = ExtResource("2_4ymsx")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5twty"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7qbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0niy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34cxj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Portal" type="StaticBody2D" groups=["portals"]]
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_87a80")
 
-[node name="PortalBody" type="StaticBody2D" parent="." groups=["portals"]]
-
-[node name="PortalCollider" type="CollisionShape2D" parent="PortalBody"]
-scale = Vector2(0.903851, 0.868898)
+[node name="PortalCollider" type="CollisionShape2D" parent="." groups=["portals"]]
+position = Vector2(26, 2)
+scale = Vector2(0.440769, 2.33559)
 shape = SubResource("CircleShape2D_k8mxy")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="PortalBody"]
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
 z_index = -1
 scale = Vector2(0.3, 0.3)
 
-[node name="PortalSprite" type="Sprite2D" parent="PortalBody/CanvasModulate"]
-scale = Vector2(0.3, 0.3)
-texture = SubResource("CompressedTexture2D_37pu4")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasModulate"]
+sprite_frames = SubResource("SpriteFrames_5twty")
+autoplay = "default"
