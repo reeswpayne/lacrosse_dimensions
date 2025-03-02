@@ -22,24 +22,25 @@ ball_scene = ExtResource("4_i271g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.90735e-06, 0)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.15, 0.15)
 sprite_frames = ExtResource("7_qqe5p")
 animation = &"steal"
-frame = 5
-frame_progress = 0.2079
+frame = 7
+frame_progress = 0.467007
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(12.2348, -0.160937)
 rotation = -2.78729
-scale = Vector2(1.76735, -1.33576)
+scale = Vector2(0.884, -0.668)
 shape = SubResource("RectangleShape2D_pkcyl")
 
 [node name="ShootSpawn" type="Node2D" parent="."]
-position = Vector2(-58, -45)
+position = Vector2(-31, -19)
 rotation = 3.45052
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-15, -17)
+position = Vector2(-8, -8)
+scale = Vector2(0.5, 0.5)
 collision_mask = 15
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
