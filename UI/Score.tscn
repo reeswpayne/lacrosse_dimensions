@@ -1,8 +1,9 @@
-[gd_scene load_steps=65 format=3 uid="uid://b1xlylx3xjdf0"]
+[gd_scene load_steps=66 format=3 uid="uid://b1xlylx3xjdf0"]
 
 [ext_resource type="Script" path="res://UI/score.gd" id="1_d3bfi"]
 [ext_resource type="AudioStream" uid="uid://bfrp3eq8cskl5" path="res://audio/game end horn.wav" id="2_rpsdr"]
 [ext_resource type="Texture2D" uid="uid://cyiijwwtk7ku6" path="res://UI/Graphics/title_animated.png" id="3_h6m8o"]
+[ext_resource type="FontFile" uid="uid://d4klgc7kg17ye" path="res://UI/Fonts/DS-DIGI.TTF" id="3_migqr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hu1oy"]
 atlas = ExtResource("3_h6m8o")
@@ -467,18 +468,21 @@ grow_horizontal = 2
 [node name="Team 1 Score" type="Label" parent="Text/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_migqr")
 text = "500
 "
 
 [node name="Timer" type="Label" parent="Text/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_migqr")
 text = "5:00"
 horizontal_alignment = 1
 
 [node name="Team 2 Score" type="Label" parent="Text/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_migqr")
 text = "100000"
 horizontal_alignment = 2
 
