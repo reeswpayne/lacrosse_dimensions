@@ -13,13 +13,15 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	contact_monitor = true
 	max_contacts_reported = 1
-	apply_impulse(Vector2(200,0))
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
+	var facing_direction = -1 * transform.y.normalized()
+	var angle_difference = facing_direction.angle_to(linear_velocity)
+	$AnimatedSprite2D.rotation = angle_difference
 	pass
 
 func _physics_process(delta):

@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://fg1dhi87024l"]
+
+[ext_resource type="Texture2D" uid="uid://difoma6x1ck7b" path="res://graphics/BallYeet.PNG" id="2_qk4mj"]
+[ext_resource type="Script" path="res://objects/ball/ball_body.gd" id="2_rkpev"]
+[ext_resource type="Script" path="res://objects/ball/ball_area.gd" id="3_k4d2y"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ohrue"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sx2pr"]
+radius = 20.025
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhw2q"]
+atlas = ExtResource("2_qk4mj")
+region = Rect2(0, 0, 102, 182)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgx6e"]
+atlas = ExtResource("2_qk4mj")
+region = Rect2(102, 0, 102, 182)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh764"]
+atlas = ExtResource("2_qk4mj")
+region = Rect2(204, 0, 102, 182)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wvsbm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhw2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgx6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh764")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="actual_ball" type="Node2D" groups=["ball"]]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." groups=["ball"]]
+collision_layer = 8
+collision_mask = 9
+physics_material_override = SubResource("PhysicsMaterial_ohrue")
+gravity_scale = 0.0
+script = ExtResource("2_rkpev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" groups=["ball"]]
+scale = Vector2(0.5, 0.54)
+shape = SubResource("CircleShape2D_sx2pr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
+position = Vector2(-0.679477, -0.205809)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_wvsbm")
+autoplay = "default"
+offset = Vector2(1.67948, 27.2058)
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D" groups=["ball"]]
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("3_k4d2y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D" groups=["ball"]]
+scale = Vector2(0.5, 0.54)
+shape = SubResource("CircleShape2D_sx2pr")
+
+[connection signal="body_entered" from="RigidBody2D/Area2D" to="RigidBody2D/Area2D" method="_on_body_entered"]
