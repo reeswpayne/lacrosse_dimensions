@@ -23,6 +23,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	if Input.is_action_just_pressed("p1_swap"):
+		r_swap()
+	if Input.is_action_just_pressed("p2_swap"):
+		b_swap()
+	
 	if swap_r:
 		t_r += .05
 		$TeamBG/SelectedIcons/RedO.position = r_off_start.lerp(r_off_target, t_r)
