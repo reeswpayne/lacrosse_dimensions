@@ -25,13 +25,11 @@ position = Vector2(-1.90735e-06, 0)
 scale = Vector2(0.15, 0.15)
 sprite_frames = ExtResource("7_qqe5p")
 animation = &"steal"
-frame = 7
-frame_progress = 0.467007
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(12.2348, -0.160937)
 rotation = -2.78729
-scale = Vector2(0.884, -0.668)
+scale = Vector2(0.884, 0.668)
 shape = SubResource("RectangleShape2D_pkcyl")
 
 [node name="ShootSpawn" type="Node2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c1we37bjm20mt"]
+[gd_scene load_steps=23 format=3 uid="uid://c1we37bjm20mt"]
 
 [ext_resource type="PackedScene" uid="uid://bt17v531utlg6" path="res://objects/player/player.tscn" id="1_dyw82"]
 [ext_resource type="PackedScene" uid="uid://cvt2d3jtx6kh6" path="res://objects/goal/goal.tscn" id="2_lhdy8"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://d4fckfx70gogm" path="res://objects/portal/portal.tscn" id="4_fbs50"]
 [ext_resource type="PackedScene" uid="uid://i1ulpjkpxx4x" path="res://UI/player_ui.tscn" id="5_w4hr7"]
 [ext_resource type="PackedScene" uid="uid://b1xlylx3xjdf0" path="res://UI/Score.tscn" id="6_a5sgp"]
+[ext_resource type="Script" path="res://Background/background.gd" id="7_m3o6w"]
+[ext_resource type="Texture2D" uid="uid://odk5x52xsdax" path="res://Background/Sky.PNG" id="8_pxoyw"]
+[ext_resource type="Texture2D" uid="uid://d1tkq0p8vvc3h" path="res://Background/Stars.PNG" id="9_6rkqt"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dvk47"]
 load_path = "res://.godot/imported/level1 map.PNG-45b09fb28bdce2c49ea16b2314c41d55.ctex"
@@ -32,10 +35,10 @@ size = Vector2(242, 40)
 size = Vector2(87, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_764cs"]
-size = Vector2(108.5, 29)
+size = Vector2(108.5, 243.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kju8"]
-size = Vector2(235.05, 44)
+size = Vector2(235.05, 194.455)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1mww"]
 size = Vector2(156.674, 44)
@@ -138,7 +141,7 @@ shape = SubResource("RectangleShape2D_764cs")
 [node name="Wall13" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall13"]
-position = Vector2(1728, 370)
+position = Vector2(1728, 262.75)
 shape = SubResource("RectangleShape2D_764cs")
 
 [node name="Wall14" type="StaticBody2D" parent="."]
@@ -180,7 +183,7 @@ shape = SubResource("RectangleShape2D_5kju8")
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall19"]
-position = Vector2(286.906, -1607.89)
+position = Vector2(233.462, -1660.83)
 rotation = -0.790109
 shape = SubResource("RectangleShape2D_5kju8")
 
@@ -333,3 +336,26 @@ player_type = 1
 position = Vector2(1313, 554)
 player_type = 1
 is_in_control = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+script = ExtResource("7_m3o6w")
+
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0)
+motion_mirroring = Vector2(5760, 0)
+
+[node name="Sky" type="Sprite2D" parent="ParallaxBackground/Sky"]
+texture = ExtResource("8_pxoyw")
+
+[node name="Stars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.75, 0)
+motion_mirroring = Vector2(5760, 0)
+
+[node name="Stars" type="Sprite2D" parent="ParallaxBackground/Stars"]
+texture = ExtResource("9_6rkqt")
+
+[node name="Planet" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1, 0)
+motion_mirroring = Vector2(5760, 0)

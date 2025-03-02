@@ -91,7 +91,14 @@ func _integrate_forces(state: PhysicsDirectBodyState2D):
 		var new_transform = state.transform
 		new_transform.origin.x = x_lock  # Keep X fixed
 		state.transform = new_transform
-		
+
+func reflect_across_y(target: Transform2D) -> Transform2D:
+	var reflected_pos = Vector2(-target.origin.x, target.origin.y)
+	var reflected_x = Vector2(-target.x.x, target.x.y)
+	var reflected_y = Vector2(-target.y.x, target.y.y)
+	var reflected_basis = Transform2D(reflected_x, reflected_y, reflected_pos)
+	return reflected_basis
+
 func _ready():
 	if not is_in_control:
 		is_goalie = true
@@ -107,6 +114,11 @@ func _ready():
 		else:
 			$AnimatedSprite2D.play("idle")
 	else:
+		$AnimatedSprite2D.transform = reflect_across_y($AnimatedSprite2D.transform)
+		$CollisionShape2D.transform = reflect_across_y($CollisionShape2D.transform)
+		$ShootSpawn.transform = reflect_across_y($ShootSpawn.transform)
+		$Area2D/CollisionPolygon2D.transform = reflect_across_y($Area2D/CollisionPolygon2D.transform)
+		
 		$AnimatedSprite2D.sprite_frames = p2_sprite
 		if has_ball:
 			$AnimatedSprite2D.play("ball")
@@ -114,8 +126,8 @@ func _ready():
 			$AnimatedSprite2D.play("idle")
 		
 func _process(delta: float) -> void:
-	if player_type == PlayerType.PLAYER_2:
-		print(scale)
+	#if player_type == PlayerType.PLAYER_2:
+	#	print(transform)
 	if player_type == PlayerType.PLAYER_1 and Input.is_action_just_pressed("p1_swap"):
 		if is_charging:
 			is_charging = false
