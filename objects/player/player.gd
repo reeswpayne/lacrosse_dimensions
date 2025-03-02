@@ -1,7 +1,6 @@
 extends RigidBody2D
 
 enum PlayerType {PLAYER_1, PLAYER_2}
-enum CharacterType {OFFENSE, DEFENSE}
 
 @export var p1_sprite: SpriteFrames
 @export var p2_sprite: SpriteFrames
@@ -12,7 +11,6 @@ enum CharacterType {OFFENSE, DEFENSE}
 @export var rotation_speed: float = 3.0  # Rotation speed in radians per second
 @export var thrust: float = 300.0        # Force applied when moving forward/backward
 @export var player_type: PlayerType = PlayerType.PLAYER_1
-@export var character_type: CharacterType = CharacterType.OFFENSE
 @export var has_ball: bool = false
 @export var is_in_control: bool = false
 
