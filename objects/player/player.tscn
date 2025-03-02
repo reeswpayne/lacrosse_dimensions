@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bt17v531utlg6"]
+
+[ext_resource type="Script" path="res://objects/player/player.gd" id="1_ot148"]
+[ext_resource type="SpriteFrames" uid="uid://dg1psmxhdiyjl" path="res://graphics/player/p2_frames.tres" id="3_u0yye"]
+[ext_resource type="PackedScene" uid="uid://fg1dhi87024l" path="res://objects/ball/actual_ball.tscn" id="4_i271g"]
+[ext_resource type="SpriteFrames" uid="uid://d0nc5l0cpna25" path="res://graphics/player/p1_frames.tres" id="7_qqe5p"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xj4ym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkcyl"]
+size = Vector2(24.7604, 91.6834)
+
+[node name="Player" type="RigidBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_xj4ym")
+gravity_scale = 0.0
+script = ExtResource("1_ot148")
+p1_sprite = ExtResource("7_qqe5p")
+p2_sprite = ExtResource("3_u0yye")
+ball_scene = ExtResource("4_i271g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.90735e-06, 0)
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("7_qqe5p")
+animation = &"steal"
+frame = 5
+frame_progress = 0.2079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(12.2348, -0.160937)
+rotation = -2.78729
+scale = Vector2(1.76735, -1.33576)
+shape = SubResource("RectangleShape2D_pkcyl")
+
+[node name="ShootSpawn" type="Node2D" parent="."]
+position = Vector2(-58, -45)
+rotation = 3.45052
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-15, -17)
+collision_mask = 15
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(-4, 0)
+polygon = PackedVector2Array(-63, -8, 35, 0, -16, 49)
+disabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
