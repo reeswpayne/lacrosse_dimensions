@@ -175,7 +175,6 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall17"]
 position = Vector2(269.97, -309.596)
 rotation = 0.77122
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_5kju8")
 
 [node name="Wall18" type="StaticBody2D" parent="."]
