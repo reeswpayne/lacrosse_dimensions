@@ -31,7 +31,6 @@ position = Vector2(-960, -540)
 
 [node name="ChargeRed" type="Polygon2D" parent="TeamBG/ChargeBars"]
 position = Vector2(191, 1023)
-scale = Vector2(1, 1)
 color = Color(1, 0.51, 0.51, 1)
 polygon = PackedVector2Array(0, 0, 22, 25, 254, 25, 227, -2)
 script = ExtResource("4_it4f8")
