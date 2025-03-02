@@ -20,6 +20,9 @@ var max_charge: float = 2.0
 var charge_coef: float = 100
 var base_throw_magnitude: float = 200
 
+var is_goalie: bool = false
+var x_lock: float = 0.0
+
 func _integrate_forces(state: PhysicsDirectBodyState2D):
 	sleeping = false
 	if is_in_control:
@@ -51,9 +54,26 @@ func _integrate_forces(state: PhysicsDirectBodyState2D):
 		# Apply movement
 		if move_direction != 0:
 			var forward_vector = Vector2.UP.rotated(rotation)
-			apply_central_force(forward_vector * thrust * move_direction)
+			var move_force = forward_vector * thrust * move_direction
+			if is_goalie:
+				move_force.x = 0
+			apply_central_force(move_force)
+	
+	if is_goalie:
+		var new_velocity = state.linear_velocity
+		new_velocity.x = 0  # Prevent X movement
+		state.linear_velocity = new_velocity
+		
+		# Lock X position
+		var new_transform = state.transform
+		new_transform.origin.x = x_lock  # Keep X fixed
+		state.transform = new_transform
 		
 func _ready():
+	if not is_in_control:
+		is_goalie = true
+		x_lock = global_position.x
+		
 	contact_monitor = true
 	max_contacts_reported = 1
 	
