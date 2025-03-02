@@ -60,6 +60,8 @@ func _process(delta: float) -> void:
 	if t_b > 1:
 		t_b = 0
 		swap_b = false
+		
+	
 
 
 var r_swap_o = false
@@ -118,3 +120,9 @@ func b_swap():
 		b_swap_o = false
 		b_swap_d = true
 	swap_b = true
+
+
+
+func _on_button_pressed() -> void:
+	r_swap()
+	b_swap()
