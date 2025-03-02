@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c25bm1fquml7n"]
+[gd_scene load_steps=26 format=3 uid="uid://c25bm1fquml7n"]
 
 [ext_resource type="PackedScene" uid="uid://bt17v531utlg6" path="res://objects/player/player.tscn" id="1_jvcv4"]
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_ntxv7"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" path="res://Background/background.gd" id="7_3chac"]
 [ext_resource type="Texture2D" uid="uid://odk5x52xsdax" path="res://Background/Sky.PNG" id="8_mko12"]
 [ext_resource type="Texture2D" uid="uid://d1tkq0p8vvc3h" path="res://Background/Stars.PNG" id="9_d51aw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3348n"]
+load_path = "res://.godot/imported/tinted window.PNG-8cd100dc50d629191e58742ccb57c00a.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bam34"]
 load_path = "res://.godot/imported/level2 map.PNG-8568715fbd864730dd55dade6925a6e0.ctex"
@@ -55,6 +58,11 @@ size = Vector2(190.364, 45.5706)
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_ntxv7")
+
+[node name="Window" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = SubResource("CompressedTexture2D_3348n")
+centered = false
 
 [node name="Level2Map" type="Sprite2D" parent="."]
 texture = SubResource("CompressedTexture2D_bam34")
@@ -198,7 +206,6 @@ shape = SubResource("RectangleShape2D_kisgu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall23"]
 position = Vector2(385.362, 814.362)
 rotation = 0.766599
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ctfe7")
 
 [node name="Wall24" type="StaticBody2D" parent="."]
@@ -206,7 +213,6 @@ shape = SubResource("RectangleShape2D_ctfe7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall24"]
 position = Vector2(1499, 309)
 rotation = 0.789552
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ctfe7")
 
 [node name="Wall25" type="StaticBody2D" parent="."]
@@ -214,7 +220,6 @@ shape = SubResource("RectangleShape2D_ctfe7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall25"]
 position = Vector2(420, 308)
 rotation = -0.788889
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ctfe7")
 
 [node name="Wall26" type="StaticBody2D" parent="."]
@@ -222,7 +227,6 @@ shape = SubResource("RectangleShape2D_ctfe7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall26"]
 position = Vector2(138, 390)
 rotation = -0.722065
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ctfe7")
 
 [node name="Wall27" type="StaticBody2D" parent="."]
@@ -230,7 +234,6 @@ shape = SubResource("RectangleShape2D_ctfe7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall27"]
 position = Vector2(1533, 814)
 rotation = -0.776801
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ctfe7")
 
 [node name="Wall28" type="StaticBody2D" parent="."]
@@ -238,7 +241,6 @@ shape = SubResource("RectangleShape2D_ctfe7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall28"]
 position = Vector2(1802, 713)
 rotation = -0.776801
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ctfe7")
 
 [node name="Wall29" type="StaticBody2D" parent="."]
@@ -246,7 +248,6 @@ shape = SubResource("RectangleShape2D_ctfe7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall29"]
 position = Vector2(1196, 317)
 rotation = 0.467692
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_t16xy")
 
 [node name="Wall30" type="StaticBody2D" parent="."]
@@ -260,7 +261,6 @@ shape = SubResource("RectangleShape2D_ig0f3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall31"]
 position = Vector2(835, 272)
 rotation = -0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_rk0we")
 
 [node name="Wall32" type="StaticBody2D" parent="."]
@@ -268,7 +268,6 @@ shape = SubResource("RectangleShape2D_rk0we")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall32"]
 position = Vector2(842.488, 316.203)
 rotation = 1.12402
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_73vdt")
 
 [node name="Wall33" type="StaticBody2D" parent="."]
@@ -276,7 +275,6 @@ shape = SubResource("RectangleShape2D_73vdt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall33"]
 position = Vector2(1140.95, 427.921)
 rotation = 1.10427
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_pcehq")
 
 [node name="Wall34" type="StaticBody2D" parent="."]
@@ -284,7 +282,6 @@ shape = SubResource("RectangleShape2D_pcehq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall34"]
 position = Vector2(1267, 436)
 rotation = -1.06086
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ctfe7")
 
 [node name="Wall7" type="StaticBody2D" parent="."]
@@ -304,7 +301,6 @@ shape = SubResource("RectangleShape2D_gb30n")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall36"]
 position = Vector2(733, 808)
 rotation = 0.467692
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_t16xy")
 
 [node name="Wall37" type="StaticBody2D" parent="."]
@@ -318,7 +314,6 @@ shape = SubResource("RectangleShape2D_ig0f3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall38"]
 position = Vector2(1093, 853)
 rotation = -0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_rk0we")
 
 [node name="Wall39" type="StaticBody2D" parent="."]
@@ -326,7 +321,6 @@ shape = SubResource("RectangleShape2D_rk0we")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall39"]
 position = Vector2(1088, 811)
 rotation = 1.12402
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_73vdt")
 
 [node name="Wall40" type="StaticBody2D" parent="."]
@@ -334,7 +328,6 @@ shape = SubResource("RectangleShape2D_73vdt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall40"]
 position = Vector2(790, 696)
 rotation = 1.10427
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_pcehq")
 
 [node name="Wall41" type="StaticBody2D" parent="."]
@@ -342,7 +335,6 @@ shape = SubResource("RectangleShape2D_pcehq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall41"]
 position = Vector2(659, 691)
 rotation = -1.06086
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ctfe7")
 
 [node name="Player" parent="." instance=ExtResource("1_jvcv4")]
@@ -375,6 +367,15 @@ position = Vector2(357, 570)
 
 [node name="GameUI" parent="." instance=ExtResource("5_kshfa")]
 
+[node name="Goalie2" parent="." instance=ExtResource("1_jvcv4")]
+position = Vector2(1578, 571)
+player_type = 1
+
+[node name="Player2" parent="." instance=ExtResource("1_jvcv4")]
+position = Vector2(1422, 773)
+player_type = 1
+is_in_control = true
+
 [node name="ScoreUI" parent="." instance=ExtResource("6_psabg")]
 anchors_preset = 0
 anchor_right = 0.0
@@ -385,15 +386,6 @@ offset_right = 935.0
 offset_bottom = -45.0
 grow_horizontal = 1
 grow_vertical = 1
-
-[node name="Goalie2" parent="." instance=ExtResource("1_jvcv4")]
-position = Vector2(1578, 571)
-player_type = 1
-
-[node name="Player2" parent="." instance=ExtResource("1_jvcv4")]
-position = Vector2(1422, 773)
-player_type = 1
-is_in_control = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2(2, 2)

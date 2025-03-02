@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c1we37bjm20mt"]
+[gd_scene load_steps=26 format=3 uid="uid://c1we37bjm20mt"]
 
 [ext_resource type="PackedScene" uid="uid://bt17v531utlg6" path="res://objects/player/player.tscn" id="1_dyw82"]
 [ext_resource type="PackedScene" uid="uid://cvt2d3jtx6kh6" path="res://objects/goal/goal.tscn" id="2_lhdy8"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" path="res://Background/background.gd" id="7_m3o6w"]
 [ext_resource type="Texture2D" uid="uid://odk5x52xsdax" path="res://Background/Sky.PNG" id="8_pxoyw"]
 [ext_resource type="Texture2D" uid="uid://d1tkq0p8vvc3h" path="res://Background/Stars.PNG" id="9_6rkqt"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ntfiv"]
+load_path = "res://.godot/imported/tinted window.PNG-8cd100dc50d629191e58742ccb57c00a.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dvk47"]
 load_path = "res://.godot/imported/level1 map.PNG-45b09fb28bdce2c49ea16b2314c41d55.ctex"
@@ -56,6 +59,11 @@ size = Vector2(156.674, 44)
 size = Vector2(118.962, 44)
 
 [node name="Level1" type="Node2D"]
+
+[node name="Window" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = SubResource("CompressedTexture2D_ntfiv")
+centered = false
 
 [node name="Level1Map" type="Sprite2D" parent="."]
 texture = SubResource("CompressedTexture2D_dvk47")
@@ -175,7 +183,6 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall17"]
 position = Vector2(269.97, -309.596)
 rotation = 0.77122
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_5kju8")
 
 [node name="Wall18" type="StaticBody2D" parent="."]
@@ -266,6 +273,10 @@ position = Vector2(719, -1800)
 rotation = 0.752959
 shape = SubResource("RectangleShape2D_yi0lg")
 
+[node name="Goalie2" parent="." instance=ExtResource("1_dyw82")]
+position = Vector2(1578, 571)
+player_type = 1
+
 [node name="Wall29" type="StaticBody2D" parent="."]
 rotation = 1.5708
 
@@ -324,6 +335,11 @@ position = Vector2(357, 570)
 
 [node name="GameUI" parent="." instance=ExtResource("5_w4hr7")]
 
+[node name="Player2" parent="." instance=ExtResource("1_dyw82")]
+position = Vector2(1313, 554)
+player_type = 1
+is_in_control = true
+
 [node name="ScoreUI" parent="." instance=ExtResource("6_a5sgp")]
 anchors_preset = 0
 anchor_right = 0.0
@@ -334,15 +350,6 @@ offset_right = 935.0
 offset_bottom = -45.0
 grow_horizontal = 1
 grow_vertical = 1
-
-[node name="Goalie2" parent="." instance=ExtResource("1_dyw82")]
-position = Vector2(1578, 571)
-player_type = 1
-
-[node name="Player2" parent="." instance=ExtResource("1_dyw82")]
-position = Vector2(1313, 554)
-player_type = 1
-is_in_control = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2(2, 2)

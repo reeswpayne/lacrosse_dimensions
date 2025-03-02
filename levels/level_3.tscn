@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cq4hgehrwy40m"]
+[gd_scene load_steps=18 format=3 uid="uid://cq4hgehrwy40m"]
 
 [ext_resource type="PackedScene" uid="uid://bt17v531utlg6" path="res://objects/player/player.tscn" id="1_da3cv"]
 [ext_resource type="Script" path="res://levels/level_3.gd" id="1_qj3p7"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" path="res://Background/background.gd" id="6_xtals"]
 [ext_resource type="Texture2D" uid="uid://odk5x52xsdax" path="res://Background/Sky.PNG" id="7_5un0j"]
 [ext_resource type="Texture2D" uid="uid://d1tkq0p8vvc3h" path="res://Background/Stars.PNG" id="8_8ocih"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8nj7s"]
+load_path = "res://.godot/imported/tinted window.PNG-8cd100dc50d629191e58742ccb57c00a.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iwpnh"]
 load_path = "res://.godot/imported/level3 map.PNG-ce40be61109fa898b18f70e1b07f36b4.ctex"
@@ -33,6 +36,11 @@ size = Vector2(363, 40)
 
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_qj3p7")
+
+[node name="Window" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = SubResource("CompressedTexture2D_8nj7s")
+centered = false
 
 [node name="Level3Map" type="Sprite2D" parent="."]
 texture = SubResource("CompressedTexture2D_iwpnh")
@@ -446,6 +454,15 @@ position = Vector2(357, 570)
 
 [node name="GameUI" parent="." instance=ExtResource("4_eajjv")]
 
+[node name="Goalie2" parent="." instance=ExtResource("1_da3cv")]
+position = Vector2(1578, 571)
+player_type = 1
+
+[node name="Player2" parent="." instance=ExtResource("1_da3cv")]
+position = Vector2(1456, 672)
+player_type = 1
+is_in_control = true
+
 [node name="ScoreUI" parent="." instance=ExtResource("5_835q7")]
 anchors_preset = 0
 anchor_right = 0.0
@@ -456,15 +473,6 @@ offset_right = 935.0
 offset_bottom = -45.0
 grow_horizontal = 1
 grow_vertical = 1
-
-[node name="Goalie2" parent="." instance=ExtResource("1_da3cv")]
-position = Vector2(1578, 571)
-player_type = 1
-
-[node name="Player2" parent="." instance=ExtResource("1_da3cv")]
-position = Vector2(1456, 672)
-player_type = 1
-is_in_control = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2(2, 2)
