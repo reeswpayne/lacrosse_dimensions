@@ -64,13 +64,3 @@ texture = ExtResource("7_r1lrs")
 [node name="Scoreboard" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
 texture = ExtResource("7_e772p")
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 500.0
-offset_top = 500.0
-offset_right = 1000.0
-offset_bottom = 1000.0
-text = "SDJLFKJDKSF:SDF"
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

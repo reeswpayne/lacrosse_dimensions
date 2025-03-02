@@ -62,3 +62,8 @@ func _on_m_4_back_pressed() -> void:
 	camera_start = camera.position
 	camera_target = $StartScreen.position
 	in_transition = true
+
+
+
+func _on_m_1_pressed() -> void:
+	get_tree().change_scene_to_file("res://levels/level_1.tscn")

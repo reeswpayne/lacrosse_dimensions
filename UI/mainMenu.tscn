@@ -322,6 +322,7 @@ anchor_mode = 0
 [connection signal="pressed" from="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HTPButton" to="." method="_on_htp_button_pressed"]
 [connection signal="pressed" from="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="StartScreen/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="LevelSelect/VBoxContainer/HBoxContainer/M1" to="." method="_on_m_1_pressed"]
 [connection signal="pressed" from="LevelSelect/VBoxContainer/HBoxContainer2/M2Back" to="." method="_on_m_2_back_pressed"]
 [connection signal="pressed" from="Credits/VBoxContainer/HBoxContainer/M3Back" to="." method="_on_m_3_back_pressed"]
 [connection signal="pressed" from="HowToPlay/VBoxContainer/HBoxContainer/M4Back" to="." method="_on_m_4_back_pressed"]
