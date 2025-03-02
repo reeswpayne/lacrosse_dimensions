@@ -108,7 +108,7 @@ func b_swap():
 		b_def_start = Vector2(1800, 1050)
 		b_def_target = Vector2(1880, 1010)
 		$TeamBG/SelectedIcons/BlueO.scale = Vector2(.2, .2)
-		$TeamBG/SelectedIcons/BlueD.scale = Vector2(-.1, .1)
+		$TeamBG/SelectedIcons/BlueD.scale = Vector2(.1, .1)
 		$TeamBG/SelectedIcons/BlueO.modulate.v = 1
 		$TeamBG/SelectedIcons/BlueD.modulate.v = .7
 		b_swap_o = true
@@ -118,7 +118,7 @@ func b_swap():
 		b_off_target = Vector2(1880, 1010)
 		b_def_start = Vector2(1880, 1010)
 		b_def_target = Vector2(1800, 1050)
-		$TeamBG/SelectedIcons/BlueD.scale = Vector2(-.2, .2)
+		$TeamBG/SelectedIcons/BlueD.scale = Vector2(.2, .2)
 		$TeamBG/SelectedIcons/BlueO.scale = Vector2(.1, .1)
 		$TeamBG/SelectedIcons/BlueO.modulate.v = .7
 		$TeamBG/SelectedIcons/BlueD.modulate.v = 1
