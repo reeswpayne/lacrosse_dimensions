@@ -56,10 +56,12 @@ centered = false
 
 [node name="Player" parent="." instance=ExtResource("1_dyw82")]
 position = Vector2(615, 561)
+is_in_control = true
 
 [node name="Player2" parent="." instance=ExtResource("1_dyw82")]
 position = Vector2(1313, 554)
 player_type = 1
+is_in_control = true
 
 [node name="Wall" type="StaticBody2D" parent="."]
 
@@ -255,7 +257,6 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall28"]
 position = Vector2(719, -1800)
 rotation = 0.752959
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yi0lg")
 
 [node name="Wall29" type="StaticBody2D" parent="."]
@@ -264,7 +265,6 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall29"]
 position = Vector2(493, -813)
 rotation = 0.792118
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8ofnv")
 
 [node name="Wall30" type="StaticBody2D" parent="."]
@@ -273,7 +273,6 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall30"]
 position = Vector2(630.113, -813.129)
 rotation = -0.792379
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8ofnv")
 
 [node name="Wall31" type="StaticBody2D" parent="."]
@@ -282,7 +281,6 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall31"]
 position = Vector2(491.567, -1109.56)
 rotation = -0.792379
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8ofnv")
 
 [node name="Wall32" type="StaticBody2D" parent="."]
@@ -291,14 +289,13 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall32"]
 position = Vector2(629, -1109)
 rotation = 0.792118
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8ofnv")
 
-[node name="Goal" parent="." instance=ExtResource("2_lhdy8")]
+[node name="P1Goal" parent="." instance=ExtResource("2_lhdy8")]
 position = Vector2(118, 502)
 player = 1
 
-[node name="Goal2" parent="." instance=ExtResource("2_lhdy8")]
+[node name="P2Goal" parent="." instance=ExtResource("2_lhdy8")]
 position = Vector2(1812, 613)
 rotation = 3.14159
 player = 2
@@ -307,13 +304,14 @@ player = 2
 position = Vector2(960, 370)
 
 [node name="Portal" parent="." instance=ExtResource("4_fbs50")]
-offset = Vector2(961.875, 937.445)
+position = Vector2(961.875, 937.445)
 rotation = 1.5708
-transform = Transform2D(-4.37114e-08, 1, -1, -4.37114e-08, 961.875, 937.445)
-output_point = Vector2(961.875, 186.675)
+output_point = Vector2(961.875, 206.675)
 
 [node name="Portal2" parent="." instance=ExtResource("4_fbs50")]
-offset = Vector2(961.875, 186.675)
+position = Vector2(961.875, 186.675)
 rotation = -1.5708
-transform = Transform2D(-4.37114e-08, -1, 1, -4.37114e-08, 961.875, 186.675)
-output_point = Vector2(961.875, 937.445)
+output_point = Vector2(961.875, 917.445)
+
+[node name="Goalie1" parent="." instance=ExtResource("1_dyw82")]
+position = Vector2(357, 570)

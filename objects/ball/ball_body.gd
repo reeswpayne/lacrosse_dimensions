@@ -47,8 +47,8 @@ func _on_body_entered(body):
 		linear_velocity = Vector2.ZERO
 		angular_velocity = 0.0
 	if body.is_in_group("portals"):
-		move_body(body.get_parent().output_point)
-		$CollisionShape2D.set_deferred("disabled", true)
-		await get_tree().create_timer(0.5).timeout
-		$CollisionShape2D.set_deferred("disabled", false)
+		move_body(body.output_point)
+		#$CollisionShape2D.set_deferred("disabled", true)
+		#await get_tree().create_timer(0.5).timeout
+		#$CollisionShape2D.set_deferred("disabled", false)
 	pass # Replace with function body.
