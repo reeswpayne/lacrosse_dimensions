@@ -14,6 +14,7 @@ enum CharacterType {OFFENSE, DEFENSE}
 @export var player_type: PlayerType = PlayerType.PLAYER_1
 @export var character_type: CharacterType = CharacterType.OFFENSE
 @export var has_ball: bool = false
+@export var is_in_control: bool = false
 
 var is_charging: bool = false
 var charge_time: float = 0.0
@@ -22,35 +23,37 @@ var charge_coef: float = 100
 var base_throw_magnitude: float = 200
 
 func _integrate_forces(state: PhysicsDirectBodyState2D):
-	var turn_direction = 0
-	var move_direction = 0
-	
-	if player_type == PlayerType.PLAYER_1:
-		if Input.is_action_pressed("p1_rot_clockwise"):  # D key
-			turn_direction += 1
-		if Input.is_action_pressed("p1_rot_counterclockwise"):   # A key
-			turn_direction -= 1
-		if Input.is_action_pressed("p1_move_forward"):  # W key
-			move_direction += 1
-		if Input.is_action_pressed("p1_move_backward"): # S key
-			move_direction -= 1
-	else:
-		if Input.is_action_pressed("p2_rot_clockwise"):  # D key
-			turn_direction += 1
-		if Input.is_action_pressed("p2_rot_counterclockwise"):   # A key
-			turn_direction -= 1
-		if Input.is_action_pressed("p2_move_forward"):  # W key
-			move_direction += 1
-		if Input.is_action_pressed("p2_move_backward"): # S key
-			move_direction -= 1
+	sleeping = false
+	if is_in_control:
+		var turn_direction = 0
+		var move_direction = 0
+		
+		if player_type == PlayerType.PLAYER_1:
+			if Input.is_action_pressed("p1_rot_clockwise"):  # D key
+				turn_direction += 1
+			if Input.is_action_pressed("p1_rot_counterclockwise"):   # A key
+				turn_direction -= 1
+			if Input.is_action_pressed("p1_move_forward"):  # W key
+				move_direction += 1
+			if Input.is_action_pressed("p1_move_backward"): # S key
+				move_direction -= 1
+		else:
+			if Input.is_action_pressed("p2_rot_clockwise"):  # D key
+				turn_direction += 1
+			if Input.is_action_pressed("p2_rot_counterclockwise"):   # A key
+				turn_direction -= 1
+			if Input.is_action_pressed("p2_move_forward"):  # W key
+				move_direction += 1
+			if Input.is_action_pressed("p2_move_backward"): # S key
+				move_direction -= 1
 
-	# Apply rotation
-	angular_velocity = turn_direction * rotation_speed
+		# Apply rotation
+		angular_velocity = turn_direction * rotation_speed
 
-	# Apply movement
-	if move_direction != 0:
-		var forward_vector = Vector2.UP.rotated(rotation)
-		apply_central_force(forward_vector * thrust * move_direction)
+		# Apply movement
+		if move_direction != 0:
+			var forward_vector = Vector2.UP.rotated(rotation)
+			apply_central_force(forward_vector * thrust * move_direction)
 		
 func _ready():
 	contact_monitor = true
@@ -68,9 +71,22 @@ func _ready():
 			$AnimatedSprite2D.play("ball")
 		else:
 			$AnimatedSprite2D.play("idle")
-	pass
 		
 func _process(delta: float) -> void:
+	if player_type == PlayerType.PLAYER_1 and Input.is_action_just_pressed("p1_swap"):
+		if is_charging:
+			is_charging = false
+			$AnimatedSprite2D.speed_scale += 2 * charge_time / max_charge
+			$AnimatedSprite2D.play()
+		is_in_control = not is_in_control
+		
+	elif player_type == PlayerType.PLAYER_2 and Input.is_action_just_pressed("p2_swap"):
+		if is_charging:
+			is_charging = false
+			$AnimatedSprite2D.speed_scale += 2 * charge_time / max_charge
+			$AnimatedSprite2D.play()
+		is_in_control = not is_in_control
+	
 	if $AnimatedSprite2D.animation == "throw" and \
 		(player_type == PlayerType.PLAYER_1 and Input.is_action_just_released("p1_shoot_ball") or \
 		player_type == PlayerType.PLAYER_2 and Input.is_action_just_released("p2_shoot_ball")):
@@ -82,23 +98,22 @@ func _process(delta: float) -> void:
 		charge_time += delta
 		if charge_time > max_charge:
 			charge_time = max_charge
-			
-	if has_ball and $AnimatedSprite2D.animation == "ball":
-		if player_type == PlayerType.PLAYER_1 and Input.is_action_just_pressed("p1_shoot_ball"):
-			$AnimatedSprite2D.play("throw")
-			has_ball = false
-			is_charging = true
-			
-		elif player_type == PlayerType.PLAYER_2 and Input.is_action_just_pressed("p2_shoot_ball"):
-			$AnimatedSprite2D.play("throw")
-			has_ball = false
-			is_charging = true
-	elif not has_ball and $AnimatedSprite2D.animation == "idle":
-		if player_type == PlayerType.PLAYER_1 and Input.is_action_just_pressed("p1_shoot_ball"):
-			$AnimatedSprite2D.play("steal")
-			
-		elif player_type == PlayerType.PLAYER_2 and Input.is_action_just_pressed("p2_shoot_ball"):
-			$AnimatedSprite2D.play("steal")
+	
+	if is_in_control:
+		if has_ball and $AnimatedSprite2D.animation == "ball":
+			if player_type == PlayerType.PLAYER_1 and Input.is_action_just_pressed("p1_shoot_ball"):
+				$AnimatedSprite2D.play("throw")
+				is_charging = true
+				
+			elif player_type == PlayerType.PLAYER_2 and Input.is_action_just_pressed("p2_shoot_ball"):
+				$AnimatedSprite2D.play("throw")
+				is_charging = true
+		elif not has_ball and $AnimatedSprite2D.animation == "idle":
+			if player_type == PlayerType.PLAYER_1 and Input.is_action_just_pressed("p1_shoot_ball"):
+				$AnimatedSprite2D.play("steal")
+				
+			elif player_type == PlayerType.PLAYER_2 and Input.is_action_just_pressed("p2_shoot_ball"):
+				$AnimatedSprite2D.play("steal")
 		
 
 func _on_animated_sprite_2d_frame_changed():
@@ -108,6 +123,7 @@ func _on_animated_sprite_2d_frame_changed():
 			$AnimatedSprite2D.pause() 
 		
 		elif $AnimatedSprite2D.frame == 6:
+			has_ball = false
 			var ball_instance = ball_scene.instantiate()
 			var ball_rb = ball_instance.get_node("RigidBody2D")
 			ball_rb.transform = Transform2D(transform)
@@ -115,6 +131,7 @@ func _on_animated_sprite_2d_frame_changed():
 			var facing_direction = ball_rb.transform.y.normalized()
 			ball_rb.linear_velocity = facing_direction * (base_throw_magnitude + charge_coef * charge_time)
 			ball_rb.linear_velocity += linear_velocity.project(ball_rb.linear_velocity)
+			
 			get_parent().add_child(ball_instance)
 			
 		elif $AnimatedSprite2D.frame == 8:
@@ -124,11 +141,13 @@ func _on_animated_sprite_2d_frame_changed():
 	
 	elif $AnimatedSprite2D.animation == "steal":
 		if $AnimatedSprite2D.frame == 4:
-			$Area2D.get_node("CollisionPolygon2D").set_deffered("disabled", false)
+			$Area2D.get_node("CollisionPolygon2D").disabled = false
 		
 		elif $AnimatedSprite2D.frame == 8:
-			$Area2D.get_node("CollisionPolygon2D").set_deffered("disabled", true)
-			if not has_ball:
+			$Area2D.get_node("CollisionPolygon2D").disabled = true
+			if has_ball:
+				$AnimatedSprite2D.play("ball")
+			else:
 				$AnimatedSprite2D.play("idle")
 				
 	elif $AnimatedSprite2D.animation == "empty_throw":
@@ -148,9 +167,11 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 	pass # Replace with function body.
 
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("player") and body.has_ball:
-		var anim = body.get_node("AnimatedSprite2D")
+	if not has_ball and body.is_in_group("player") and body.has_ball:
+		has_ball = true
 		body.has_ball = false
+		
+		var anim = body.get_node("AnimatedSprite2D")
 		if anim.animation == "throw":
 			body.is_charging = false
 			
@@ -158,6 +179,6 @@ func _on_area_2d_body_entered(body):
 			anim.play("empty_throw")
 			anim.frame = current_frame
 			if anim.frame >= 4:
-				anim.speed_scale = 2 * body.charge_time / body.max_charge
-		elif anim.animation != "empty_throw":
+				anim.speed_scale += 2 * body.charge_time / body.max_charge
+		else:
 			anim.play("idle")
