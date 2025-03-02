@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1xlylx3xjdf0"]
+[gd_scene load_steps=3 format=3 uid="uid://b1xlylx3xjdf0"]
 
 [ext_resource type="Script" path="res://UI/score.gd" id="1_d3bfi"]
+[ext_resource type="AudioStream" uid="uid://bfrp3eq8cskl5" path="res://audio/game end horn.wav" id="2_rpsdr"]
 
 [node name="ScoreUI" type="Control"]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d3bfi")
+win_sfx = ExtResource("2_rpsdr")
 
 [node name="Text" type="Control" parent="."]
 layout_mode = 1

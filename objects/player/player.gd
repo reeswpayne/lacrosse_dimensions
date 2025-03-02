@@ -14,6 +14,9 @@ enum PlayerType {PLAYER_1, PLAYER_2}
 @export var has_ball: bool = false
 @export var is_in_control: bool = false
 
+@export var dash_sfx: AudioStream
+@export var swing_sfx: AudioStream
+
 var has_played_swing_sound = false
 
 var is_charging: bool = false
@@ -27,10 +30,10 @@ var x_lock: float = 0.0
 var dash_time: float = 4.0
 
 func play_dash_sound():
-	pass
+	AudioManager.play_sfx(dash_sfx, 1.0)
 	
 func play_swing_sound():
-	pass
+	AudioManager.play_sfx(swing_sfx, 1.0)
 
 func do_dash(move_direction: int):
 	var forward_vector = Vector2.UP.rotated(rotation)
@@ -185,7 +188,12 @@ func _on_animated_sprite_2d_frame_changed():
 	if $AnimatedSprite2D.animation == "throw":
 		
 		if $AnimatedSprite2D.frame == 4 and is_charging:
-			$AnimatedSprite2D.pause() 
+			$AnimatedSprite2D.pause()
+			has_played_swing_sound = false
+			
+		elif $AnimatedSprite2D.frame == 5:
+			play_swing_sound()
+			has_played_swing_sound = true
 		
 		elif $AnimatedSprite2D.frame == 6:
 			var space_state = get_world_2d().direct_space_state  # Get physics space
@@ -201,7 +209,6 @@ func _on_animated_sprite_2d_frame_changed():
 
 			# Check for collisions
 			var result = space_state.intersect_shape(query_params)
-			print(result.size())
 
 			if result.size() == 0:  # No walls detected at the spawn position
 				has_ball = false
@@ -227,6 +234,7 @@ func _on_animated_sprite_2d_frame_changed():
 	elif $AnimatedSprite2D.animation == "steal":
 		if $AnimatedSprite2D.frame == 4:
 			$Area2D.get_node("CollisionPolygon2D").disabled = false
+			has_played_swing_sound = false
 			
 		elif $AnimatedSprite2D.frame == 5:
 			if not has_played_swing_sound:
@@ -239,11 +247,12 @@ func _on_animated_sprite_2d_frame_changed():
 				$AnimatedSprite2D.play("ball")
 			else:
 				$AnimatedSprite2D.play("idle")
-			has_played_swing_sound = false
+			
 				
 	elif $AnimatedSprite2D.animation == "empty_throw":
 		if $AnimatedSprite2D.frame == 4:
 			$AnimatedSprite2D.speed_scale += 2 * charge_time / max_charge
+			has_played_swing_sound = false
 			
 		elif $AnimatedSprite2D.frame == 5:
 			if not has_played_swing_sound:
@@ -252,7 +261,6 @@ func _on_animated_sprite_2d_frame_changed():
 			
 		elif $AnimatedSprite2D.frame == 8:
 			$AnimatedSprite2D.play("idle")
-			has_played_swing_sound = false
 			$AnimatedSprite2D.speed_scale = 1.0
 			charge_time = 0.0
 			

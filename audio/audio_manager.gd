@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var music_player = $Music
+@export var recharge_sfx: AudioStream
 
 var sfx_volume = 0.7
 

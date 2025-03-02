@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://xl681halcgc1"]
+[gd_scene load_steps=4 format=3 uid="uid://xl681halcgc1"]
 
 [ext_resource type="Script" path="res://audio/audio_manager.gd" id="1_burk3"]
+[ext_resource type="AudioStream" uid="uid://d130hjtuvr5ed" path="res://audio/dash is charged.wav" id="2_hdeo2"]
 [ext_resource type="AudioStream" uid="uid://doppenc2lwsen" path="res://audio/lacrosse dimensions loops.wav" id="2_oq5ua"]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource("1_burk3")
+recharge_sfx = ExtResource("2_hdeo2")
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_oq5ua")

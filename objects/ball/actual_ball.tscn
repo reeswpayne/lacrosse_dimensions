@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://fg1dhi87024l"]
+[gd_scene load_steps=15 format=3 uid="uid://fg1dhi87024l"]
 
+[ext_resource type="AudioStream" uid="uid://bcmlvvnwq5lrs" path="res://audio/lacross ball bounce.wav" id="2_evwgi"]
 [ext_resource type="Texture2D" uid="uid://difoma6x1ck7b" path="res://graphics/BallYeet.PNG" id="2_qk4mj"]
 [ext_resource type="Script" path="res://objects/ball/ball_body.gd" id="2_rkpev"]
+[ext_resource type="AudioStream" uid="uid://c2h7jj464k6xb" path="res://audio/portal.wav" id="3_hfr7f"]
 [ext_resource type="Script" path="res://objects/ball/ball_area.gd" id="3_k4d2y"]
 [ext_resource type="Texture2D" uid="uid://dil5g0ysubhcn" path="res://graphics/BallNotYeet.PNG" id="3_u25d1"]
+[ext_resource type="AudioStream" uid="uid://cf6itut5v3su1" path="res://audio/score buzzer.wav" id="4_sldsg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ohrue"]
 bounce = 1.0
@@ -60,6 +63,9 @@ collision_mask = 9
 physics_material_override = SubResource("PhysicsMaterial_ohrue")
 gravity_scale = 0.0
 script = ExtResource("2_rkpev")
+bounce_sfx = ExtResource("2_evwgi")
+portal_sfx = ExtResource("3_hfr7f")
+goal_sfx = ExtResource("4_sldsg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" groups=["ball"]]
 scale = Vector2(0.5, 0.54)

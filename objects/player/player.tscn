@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt17v531utlg6"]
+[gd_scene load_steps=9 format=3 uid="uid://bt17v531utlg6"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_ot148"]
 [ext_resource type="SpriteFrames" uid="uid://dg1psmxhdiyjl" path="res://graphics/player/p2_frames.tres" id="3_u0yye"]
 [ext_resource type="PackedScene" uid="uid://fg1dhi87024l" path="res://objects/ball/actual_ball.tscn" id="4_i271g"]
+[ext_resource type="AudioStream" uid="uid://dsv3cbldi7wqh" path="res://audio/dash.wav" id="5_3oojd"]
+[ext_resource type="AudioStream" uid="uid://hlq1s643gwkh" path="res://audio/throw ball.wav" id="6_g5mng"]
 [ext_resource type="SpriteFrames" uid="uid://d0nc5l0cpna25" path="res://graphics/player/p1_frames.tres" id="7_qqe5p"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xj4ym"]
@@ -19,6 +21,8 @@ script = ExtResource("1_ot148")
 p1_sprite = ExtResource("7_qqe5p")
 p2_sprite = ExtResource("3_u0yye")
 ball_scene = ExtResource("4_i271g")
+dash_sfx = ExtResource("5_3oojd")
+swing_sfx = ExtResource("6_g5mng")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.90735e-06, 0)
