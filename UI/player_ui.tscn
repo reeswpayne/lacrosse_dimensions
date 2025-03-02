@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://i1ulpjkpxx4x"]
+
+[ext_resource type="Texture2D" uid="uid://d5114xcdepqw" path="res://test_graphics/Level1environment.PNG" id="1_i4yl0"]
+[ext_resource type="Script" path="res://UI/player_ui.gd" id="1_j2j6s"]
+[ext_resource type="Texture2D" uid="uid://dqsg7egj876q4" path="res://UI/Graphics/team switching.PNG" id="3_6udb2"]
+[ext_resource type="Texture2D" uid="uid://7gn0wlcut7ki" path="res://UI/Graphics/Jet pack icon.PNG" id="4_bnt20"]
+[ext_resource type="Texture2D" uid="uid://d37aq5m354yo7" path="res://UI/Graphics/Goalie icon.PNG" id="5_fky86"]
+[ext_resource type="Texture2D" uid="uid://gnhv8n7uojgc" path="res://UI/Graphics/back of powerup .PNG" id="6_ew25e"]
+[ext_resource type="Texture2D" uid="uid://b7dgqf3tntcwl" path="res://UI/Graphics/top of powerup glass.PNG" id="7_r1lrs"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j2j6s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_i4yl0")
+
+[node name="TeamBG" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("3_6udb2")
+
+[node name="SelectedIcons" type="Node2D" parent="TeamBG"]
+position = Vector2(-960, -540)
+
+[node name="RedO" type="Sprite2D" parent="TeamBG/SelectedIcons"]
+position = Vector2(40, 1010)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_bnt20")
+
+[node name="RedD" type="Sprite2D" parent="TeamBG/SelectedIcons"]
+position = Vector2(120, 1050)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_fky86")
+
+[node name="BlueO" type="Sprite2D" parent="TeamBG/SelectedIcons"]
+position = Vector2(1880, 1010)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_bnt20")
+
+[node name="BlueD" type="Sprite2D" parent="TeamBG/SelectedIcons"]
+position = Vector2(1800, 1050)
+scale = Vector2(-0.1, 0.1)
+texture = ExtResource("5_fky86")
+
+[node name="Tint" type="Sprite2D" parent="TeamBG"]
+texture = ExtResource("6_ew25e")
+
+[node name="ChargeBars" type="Node2D" parent="TeamBG"]
+position = Vector2(-960, -540)
+
+[node name="ChargeRed" type="Polygon2D" parent="TeamBG/ChargeBars"]
+color = Color(1, 0.51, 0.51, 1)
+polygon = PackedVector2Array(445, 1048, 418, 1021, 191, 1023, 213, 1048)
+
+[node name="ChargeBlue" type="Polygon2D" parent="TeamBG/ChargeBars"]
+color = Color(0.42, 0.71, 1, 1)
+polygon = PackedVector2Array(1478, 1048, 1505, 1021, 1732, 1023, 1710, 1048)
+
+[node name="Gauge" type="Sprite2D" parent="TeamBG"]
+texture = ExtResource("7_r1lrs")
+
+[node name="swap" type="Button" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 500.0
+offset_right = 600.0
+offset_bottom = 600.0
+text = "Offense"

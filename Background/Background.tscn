@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://d1tkq0p8vvc3h" path="res://Background/Stars.PNG" id="2_deqv3"]
 [ext_resource type="Texture2D" uid="uid://1vo1rlpejuu5" path="res://Background/Planets.PNG" id="3_q7mso"]
 
-[node name="Node2D" type="ParallaxBackground"]
+[node name="ParallaxBackground" type="ParallaxBackground"]
+offset = Vector2(0, 540)
+transform = Transform2D(1, 0, 0, 1, 0, 540)
 scroll_offset = Vector2(10, 0)
 script = ExtResource("1_uehua")
 
