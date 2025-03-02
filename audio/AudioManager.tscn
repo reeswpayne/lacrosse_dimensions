@@ -9,3 +9,5 @@ script = ExtResource("1_burk3")
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_oq5ua")
 autoplay = true
+max_distance = 4e+06
+panning_strength = 0.0
