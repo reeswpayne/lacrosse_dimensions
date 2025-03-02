@@ -7,8 +7,6 @@ var moveVector: Vector2
 
 var rng = RandomNumberGenerator.new()
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	contact_monitor = true
