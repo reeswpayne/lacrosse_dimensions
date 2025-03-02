@@ -196,11 +196,12 @@ func _on_animated_sprite_2d_frame_changed():
 			# Set up query parameters
 			var query_params = PhysicsShapeQueryParameters2D.new()
 			query_params.shape = shape
-			query_params.transform = $ShootSpawn.transform
+			query_params.transform = global_transform * $ShootSpawn.transform
 			query_params.collision_mask = 1  # Only check against walls (layer 1)
 
 			# Check for collisions
 			var result = space_state.intersect_shape(query_params)
+			print(result.size())
 
 			if result.size() == 0:  # No walls detected at the spawn position
 				has_ball = false
