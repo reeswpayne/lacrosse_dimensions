@@ -114,6 +114,8 @@ func _ready():
 			$AnimatedSprite2D.play("idle")
 		
 func _process(delta: float) -> void:
+	if player_type == PlayerType.PLAYER_2:
+		print(scale)
 	if player_type == PlayerType.PLAYER_1 and Input.is_action_just_pressed("p1_swap"):
 		if is_charging:
 			is_charging = false

@@ -126,9 +126,3 @@ func b_swap():
 		b_swap_o = false
 		b_swap_d = true
 	swap_b = true
-
-
-
-func _on_button_pressed() -> void:
-	r_swap()
-	b_swap()

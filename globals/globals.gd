@@ -2,6 +2,7 @@ extends Node
 
 var p1_score = 0
 var p2_score = 0
+var match_time = 0.0
 
 var p1_dash_time = 0.0
 var p2_dash_time = 0.0

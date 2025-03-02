@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvt2d3jtx6kh6"]
+[gd_scene load_steps=5 format=3 uid="uid://cvt2d3jtx6kh6"]
 
 [ext_resource type="Script" path="res://objects/goal/goal.gd" id="1_bcnwx"]
 
@@ -8,10 +8,14 @@ load_path = "res://.godot/imported/goal for map.PNG-2d2f9cbf0eed06e3c6daee4e55e1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_baxph"]
 size = Vector2(2.57143, 22.2857)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6k78h"]
+load_path = "res://.godot/imported/GOAL white (maybe do in engine we'll see).png-f1a9c3390760d0ede17156a0425b83ea.ctex"
+
 [node name="Goal" type="StaticBody2D" groups=["goals"]]
 collision_layer = 9
 collision_mask = 9
 script = ExtResource("1_bcnwx")
+player = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(91.0625, 59.6563)
@@ -28,3 +32,9 @@ shape = SubResource("RectangleShape2D_baxph")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(7, 55, 127, -21, 125, 134)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(78, -61)
+scale = Vector2(0.2, 0.2)
+texture = SubResource("CompressedTexture2D_6k78h")
