@@ -18,11 +18,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	var facing_direction = -1 * transform.y.normalized()
 	var angle_difference = facing_direction.angle_to(linear_velocity)
 	$AnimatedSprite2D.rotation = angle_difference
-	pass
+	
+	if linear_velocity.length() < 0.5:
+		$AnimatedSprite2D.play("idle")
+	else:
+		$AnimatedSprite2D.play("default")
 
 func _physics_process(delta):
 	#pply_impulse(Vector2(50,50))

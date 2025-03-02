@@ -14,6 +14,8 @@ enum PlayerType {PLAYER_1, PLAYER_2}
 @export var has_ball: bool = false
 @export var is_in_control: bool = false
 
+var has_played_swing_sound = false
+
 var is_charging: bool = false
 var charge_time: float = 0.0
 var max_charge: float = 2.0
@@ -24,8 +26,16 @@ var is_goalie: bool = false
 var x_lock: float = 0.0
 var dash_time: float = 4.0
 
-func do_dash():
+func play_dash_sound():
 	pass
+	
+func play_swing_sound():
+	pass
+
+func do_dash(move_direction: int):
+	var forward_vector = Vector2.UP.rotated(rotation)
+	linear_velocity += 150 * move_direction * forward_vector
+	play_dash_sound()
 
 func _integrate_forces(state: PhysicsDirectBodyState2D):
 	sleeping = false
@@ -60,20 +70,18 @@ func _integrate_forces(state: PhysicsDirectBodyState2D):
 			if player_type == PlayerType.PLAYER_1 and \
 			Input.is_action_just_pressed("p1_dash") and Globals.p1_dash_time == 0.0:
 				Globals.p1_dash_time = dash_time
-				do_dash()
+				do_dash(move_direction)
 			elif player_type == PlayerType.PLAYER_2 and \
 			Input.is_action_just_pressed("p2_dash") and Globals.p2_dash_time == 0.0:
 				Globals.p2_dash_time = dash_time
-				do_dash()
+				do_dash(move_direction)
 			else:
 				var forward_vector = Vector2.UP.rotated(rotation)
 				var move_force = forward_vector * thrust * move_direction
 				if is_goalie:
 					move_force.x = 0
 				apply_central_force(move_force)
-			
-		
-	
+
 	if is_goalie:
 		var new_velocity = state.linear_velocity
 		new_velocity.x = 0  # Prevent X movement
@@ -185,6 +193,11 @@ func _on_animated_sprite_2d_frame_changed():
 	elif $AnimatedSprite2D.animation == "steal":
 		if $AnimatedSprite2D.frame == 4:
 			$Area2D.get_node("CollisionPolygon2D").disabled = false
+			
+		elif $AnimatedSprite2D.frame == 5:
+			if not has_played_swing_sound:
+				play_swing_sound()
+				has_played_swing_sound = true
 		
 		elif $AnimatedSprite2D.frame == 8:
 			$Area2D.get_node("CollisionPolygon2D").disabled = true
@@ -192,13 +205,20 @@ func _on_animated_sprite_2d_frame_changed():
 				$AnimatedSprite2D.play("ball")
 			else:
 				$AnimatedSprite2D.play("idle")
+			has_played_swing_sound = false
 				
 	elif $AnimatedSprite2D.animation == "empty_throw":
 		if $AnimatedSprite2D.frame == 4:
 			$AnimatedSprite2D.speed_scale += 2 * charge_time / max_charge
 			
+		elif $AnimatedSprite2D.frame == 5:
+			if not has_played_swing_sound:
+				play_swing_sound()
+				has_played_swing_sound = true
+			
 		elif $AnimatedSprite2D.frame == 8:
 			$AnimatedSprite2D.play("idle")
+			has_played_swing_sound = false
 			$AnimatedSprite2D.speed_scale = 1.0
 			charge_time = 0.0
 			

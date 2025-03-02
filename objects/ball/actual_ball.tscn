@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://fg1dhi87024l"]
+[gd_scene load_steps=12 format=3 uid="uid://fg1dhi87024l"]
 
 [ext_resource type="Texture2D" uid="uid://difoma6x1ck7b" path="res://graphics/BallYeet.PNG" id="2_qk4mj"]
 [ext_resource type="Script" path="res://objects/ball/ball_body.gd" id="2_rkpev"]
 [ext_resource type="Script" path="res://objects/ball/ball_area.gd" id="3_k4d2y"]
+[ext_resource type="Texture2D" uid="uid://dil5g0ysubhcn" path="res://graphics/BallNotYeet.PNG" id="3_u25d1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ohrue"]
 bounce = 1.0
@@ -22,6 +23,10 @@ region = Rect2(102, 0, 102, 182)
 atlas = ExtResource("2_qk4mj")
 region = Rect2(204, 0, 102, 182)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqfa0"]
+atlas = ExtResource("3_u25d1")
+region = Rect2(0, 0, 102, 182)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_wvsbm"]
 animations = [{
 "frames": [{
@@ -37,6 +42,14 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqfa0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 0.0
 }]
 
 [node name="actual_ball" type="Node2D" groups=["ball"]]
@@ -56,6 +69,7 @@ shape = SubResource("CircleShape2D_sx2pr")
 position = Vector2(-0.679477, -0.205809)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_wvsbm")
+animation = &"idle"
 autoplay = "default"
 offset = Vector2(1.67948, 27.2058)
 
